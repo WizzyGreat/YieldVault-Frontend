@@ -7,6 +7,7 @@ import VaultCard from '../components/VaultCard.jsx';
 import Loader from '../components/Loader.jsx';
 import ErrorMessage from '../components/ErrorMessage.jsx';
 import { formatUsd, formatPercent, formatAmount } from '../utils/format.js';
+import { summarizePositions } from '../utils/positions.js';
 
 /**
  * Dashboard: protocol stats (TVL/APY), the user's aggregate position and
@@ -18,8 +19,7 @@ export default function Dashboard() {
   const { positions } = usePositions();
   const { isConnected } = useWallet();
 
-  const totalValue = positions.reduce((sum, p) => sum + p.value, 0);
-  const totalShares = positions.reduce((sum, p) => sum + p.shares, 0);
+  const { totalValue, totalShares } = summarizePositions(positions);
 
   if (loading) return <Loader label="Loading vaults…" />;
   if (error) return <ErrorMessage message={error} onRetry={reload} />;

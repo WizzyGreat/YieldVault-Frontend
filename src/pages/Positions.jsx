@@ -9,6 +9,7 @@ import ErrorMessage from '../components/ErrorMessage.jsx';
 import EmptyState from '../components/EmptyState.jsx';
 import WalletButton from '../components/WalletButton.jsx';
 import { formatUsd, formatAmount } from '../utils/format.js';
+import { summarizePositions } from '../utils/positions.js';
 
 /**
  * Positions page: the user's open vault positions and total earned yield.
@@ -47,8 +48,7 @@ export default function Positions() {
     );
   }
 
-  const totalValue = positions.reduce((sum, p) => sum + p.value, 0);
-  const totalEarned = positions.reduce((sum, p) => sum + p.earned, 0);
+  const { totalValue, totalEarned } = summarizePositions(positions);
 
   return (
     <div className="positions">
