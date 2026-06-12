@@ -1,0 +1,37 @@
+import { Link } from 'react-router-dom';
+import { formatAmount } from '../utils/format.js';
+import { getAssetByCode } from '../constants/assets.js';
+
+/**
+ * One row in the positions list, showing shares, value and earned yield.
+ * @param {object} props
+ * @param {object} props.position
+ */
+export default function PositionRow({ position }) {
+  const asset = getAssetByCode(position.asset);
+  const positive = position.earned >= 0;
+
+  return (
+    <Link to={`/vault/${position.vaultId}`} className="position-row">
+      <div className="position-asset">
+        <span className="position-icon">{asset.icon}</span>
+        <span>{position.asset}</span>
+      </div>
+      <div className="position-cell">
+        <span className="muted">Shares</span>
+        <span>{formatAmount(position.shares, 2)}</span>
+      </div>
+      <div className="position-cell">
+        <span className="muted">Value</span>
+        <span>{formatAmount(position.value, 2)}</span>
+      </div>
+      <div className="position-cell">
+        <span className="muted">Earned</span>
+        <span className={positive ? 'gain' : 'loss'}>
+          {positive ? '+' : ''}
+          {formatAmount(position.earned, 2)}
+        </span>
+      </div>
+    </Link>
+  );
+}
