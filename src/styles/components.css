@@ -143,6 +143,11 @@
   color: #f1c40f;
 }
 
+.risk-high {
+  background: rgba(231, 76, 60, 0.15);
+  color: var(--loss);
+}
+
 .vault-card-stats {
   display: flex;
   justify-content: space-between;
