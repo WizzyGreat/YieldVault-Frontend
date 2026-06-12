@@ -24,6 +24,13 @@ export const ASSETS = [
     icon: '💶',
     contract: 'CCBINL4TCQVEQN2Q2GO66RS4CWUARIECZEJA7JVYQO3GVF4YJUTODHO',
   },
+  {
+    code: 'BTC',
+    name: 'Bitcoin',
+    decimals: 8,
+    icon: '₿',
+    contract: 'CAAY3MAACVPNLZKNKHGTERYJBJZL3JZMXJ4OXBVDMU34UNKSZBSPCP7M',
+  },
 ];
 
 /** Default asset used when none is selected. */
