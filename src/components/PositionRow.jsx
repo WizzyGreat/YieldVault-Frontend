@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { formatAmount } from '../utils/format.js';
+import { formatAmount, formatShares } from '../utils/format.js';
 import { getAssetByCode } from '../constants/assets.js';
 
 /**
@@ -19,7 +19,7 @@ export default function PositionRow({ position }) {
       </div>
       <div className="position-cell">
         <span className="muted">Shares</span>
-        <span>{formatAmount(position.shares, 2)}</span>
+        <span>{formatShares(position.shares, 2)}</span>
       </div>
       <div className="position-cell">
         <span className="muted">Value</span>

@@ -32,6 +32,17 @@ export function formatCompact(value) {
 }
 
 /**
+ * Format a vault share balance with thousands separators. Shares are
+ * displayed with fewer decimals than asset amounts.
+ * @param {number} value
+ * @param {number} [decimals=2]
+ * @returns {string}
+ */
+export function formatShares(value, decimals = 2) {
+  return `${formatAmount(value, decimals)} shares`;
+}
+
+/**
  * Format a ratio (0.085) as a percentage string ("8.50%").
  * @param {number} value
  * @param {number} [decimals=2]
