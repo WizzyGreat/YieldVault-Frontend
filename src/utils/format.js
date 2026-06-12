@@ -64,6 +64,43 @@ export function formatUsd(value) {
 }
 
 /**
+ * Format an APY ratio (0.085) as a labelled percentage ("8.50% APY").
+ * @param {number} value
+ * @param {number} [decimals=2]
+ * @returns {string}
+ */
+export function formatApy(value, decimals = 2) {
+  return `${formatPercent(value, decimals)} APY`;
+}
+
+/**
+ * Convert an APY ratio into the projected yield on a principal amount.
+ * @param {number} principal - deposited amount
+ * @param {number} apy - annual percentage yield as a ratio (0.085)
+ * @returns {number} projected earnings over one year
+ */
+export function projectedYield(principal, apy) {
+  const p = Number(principal);
+  const r = Number(apy);
+  if (!Number.isFinite(p) || !Number.isFinite(r)) return 0;
+  return p * r;
+}
+
+/**
+ * Format a signed value with an explicit + or − prefix, useful for showing
+ * gains and losses (e.g. "+12.50", "−3.40").
+ * @param {number} value
+ * @param {number} [decimals=2]
+ * @returns {string}
+ */
+export function formatSigned(value, decimals = 2) {
+  const num = Number(value);
+  if (!Number.isFinite(num) || num === 0) return formatAmount(0, decimals);
+  const sign = num > 0 ? '+' : '−';
+  return `${sign}${formatAmount(Math.abs(num), decimals)}`;
+}
+
+/**
  * Shorten a Stellar address for display (GABC...WXYZ).
  * @param {string} address
  * @returns {string}
