@@ -1,20 +1,27 @@
 import { useWallet } from '../hooks/useWallet.js';
+import { useClipboard } from '../hooks/useClipboard.js';
 import { shortenAddress } from '../utils/format.js';
 import Button from './Button.jsx';
 
 /**
  * Connect/disconnect control for the mock Stellar wallet. Shows the
- * shortened address once connected.
+ * shortened address once connected; clicking it copies the full address.
  */
 export default function WalletButton() {
   const { isConnected, address, connecting, connect, disconnect } = useWallet();
+  const { copied, copy } = useClipboard();
 
   if (isConnected) {
     return (
       <div className="wallet-button">
-        <span className="wallet-address" title={address}>
-          {shortenAddress(address)}
-        </span>
+        <button
+          type="button"
+          className="wallet-address"
+          title={copied ? 'Copied!' : `Copy ${address}`}
+          onClick={() => copy(address)}
+        >
+          {copied ? 'Copied!' : shortenAddress(address)}
+        </button>
         <Button variant="ghost" onClick={disconnect}>
           Disconnect
         </Button>
