@@ -18,3 +18,17 @@ Then open http://localhost:5173.
 
 To use custom network settings, copy `.env.example` to `.env.local` and edit
 the values. All variables are optional.
+
+## Project structure
+
+```
+src/
+  components/   reusable UI (Button, StatCard, VaultCard, forms, ...)
+  pages/        routed views (Home, Dashboard, VaultDetail, Positions)
+  hooks/        data hooks (useWallet, useVault, useVaults, usePositions)
+  context/      AppContext for shared wallet state
+  services/     mock api / wallet / vault services
+  utils/        formatting, validation and share math
+  constants/    assets and app config
+  styles/       plain CSS, split by concern
+```
