@@ -3,15 +3,19 @@ import { clamp } from '../utils/format.js';
 /**
  * Simple previous/next pager with a "page X of N" indicator. Buttons disable
  * at the bounds and the reported page is clamped to a valid range.
- * @param {object} props
- * @param {number} props.page - current 1-based page
- * @param {number} props.totalPages
- * @param {(page: number) => void} props.onChange
  */
-export default function Pagination({ page, totalPages, onChange }) {
+
+interface PaginationProps {
+  /** Current 1-based page */
+  page: number;
+  totalPages: number;
+  onChange: (page: number) => void;
+}
+
+export default function Pagination({ page, totalPages, onChange }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-  const go = (next) => onChange(clamp(next, 1, totalPages));
+  const go = (next: number) => onChange(clamp(next, 1, totalPages));
 
   return (
     <nav className="pagination" aria-label="Pagination">

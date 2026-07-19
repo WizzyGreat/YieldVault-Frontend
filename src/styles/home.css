@@ -5,17 +5,17 @@
 }
 
 .hero-title {
-  font-size: 2.6rem;
-  line-height: 1.15;
-  max-width: 43.75rem; /* 700px @ 16px – scales with browser font size */
+  font-size: var(--fs-4xl);
+  line-height: var(--lh-tight);
+  max-width: 700px;
   margin: 0 auto 1rem;
 }
 
 .hero-subtitle {
   color: var(--muted);
-  max-width: 35rem; /* 560px @ 16px – scales with browser font size */
+  max-width: 560px;
   margin: 0 auto 2rem;
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
 }
 
 .hero-actions {
@@ -41,11 +41,11 @@
 }
 
 .feature-icon {
-  font-size: 2rem;
+  font-size: var(--fs-3xl);
 }
 
 .feature p {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   margin: 0.5rem 0 0;
 }

@@ -1,13 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
-import ErrorBoundary from './components/ErrorBoundary.jsx';
-import Home from './pages/Home.jsx';
-import Dashboard from './pages/Dashboard.jsx';
-import VaultDetail from './pages/VaultDetail.jsx';
-import Positions from './pages/Positions.jsx';
-import WizardDemo from './pages/WizardDemo.jsx';
-import NotFound from './pages/NotFound.jsx';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import VaultDetail from './pages/VaultDetail';
+import Positions from './pages/Positions';
+import NotFound from './pages/NotFound';
 
 /**
  * Root layout: persistent navbar/footer with routed page content.
@@ -23,7 +22,6 @@ export default function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/vault/:id" element={<VaultDetail />} />
             <Route path="/positions" element={<Positions />} />
-            <Route path="/wizard-demo" element={<WizardDemo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </ErrorBoundary>

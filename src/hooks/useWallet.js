@@ -1,4 +1,4 @@
-import { useAppContext } from '../context/AppContext.jsx';
+import { useAppContext } from '../context/AppContext';
 
 /**
  * Convenience hook exposing wallet state and actions from AppContext.

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Button from './Button.jsx';
+import React, { useState } from 'react';
+import Button from './Button';
 import { useWallet } from '../hooks/useWallet.js';
 import { usePositions } from '../hooks/usePositions.js';
 import { validateWithdraw } from '../utils/validate.js';
@@ -11,22 +11,32 @@ import * as walletService from '../services/wallet.js';
 /**
  * Withdraw form for a vault. Validates against the user's deposited amount,
  * previews the shares to be burned, and submits a mock transaction.
- * @param {object} props
- * @param {object} props.vault
- * @param {() => void} [props.onSuccess]
  */
-export default function WithdrawForm({ vault, onSuccess }) {
+
+interface WithdrawFormVault {
+  id: string;
+  asset: string;
+  totalAssets: number;
+  totalShares: number;
+}
+
+interface WithdrawFormProps {
+  vault: WithdrawFormVault;
+  onSuccess?: () => void;
+}
+
+export default function WithdrawForm({ vault, onSuccess }: WithdrawFormProps) {
   const { isConnected } = useWallet();
   const { positions } = usePositions();
   const [amount, setAmount] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState<string | null>(null);
 
-  const position = positions.find((p) => p.vaultId === vault.id);
+  const position = positions.find((p: { vaultId: string }) => p.vaultId === vault.id);
   const deposited = position?.value ?? 0;
   const { valid, error } = validateWithdraw(amount, deposited);
   const sharesBurned = previewWithdraw(
-    amount,
+    amount as unknown as number,
     vault.totalAssets,
     vault.totalShares,
   );
@@ -34,7 +44,7 @@ export default function WithdrawForm({ vault, onSuccess }) {
 
   const handleMax = () => setAmount(String(deposited));
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!valid) return;
     setSubmitting(true);
@@ -45,8 +55,8 @@ export default function WithdrawForm({ vault, onSuccess }) {
       setMessage(`Withdrew ${amount} ${vault.asset}`);
       setAmount('');
       onSuccess?.();
-    } catch (err) {
-      setMessage(err.message || 'Withdraw failed');
+    } catch (err: unknown) {
+      setMessage(err instanceof Error ? err.message : 'Withdraw failed');
     } finally {
       setSubmitting(false);
     }

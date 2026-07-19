@@ -1,7 +1,7 @@
 import { useWallet } from '../hooks/useWallet.js';
 import { useClipboard } from '../hooks/useClipboard.js';
 import { shortenAddress } from '../utils/format.js';
-import Button from './Button.jsx';
+import Button from './Button';
 
 /**
  * Connect/disconnect control for the mock Stellar wallet. Shows the
@@ -18,9 +18,9 @@ export default function WalletButton() {
           type="button"
           className="wallet-address"
           title={copied ? 'Copied!' : `Copy ${address}`}
-          onClick={() => copy(address)}
+          onClick={() => copy(address ?? '')}
         >
-          {copied ? 'Copied!' : shortenAddress(address)}
+          {copied ? 'Copied!' : shortenAddress(address ?? '')}
         </button>
         <Button variant="ghost" onClick={disconnect}>
           Disconnect

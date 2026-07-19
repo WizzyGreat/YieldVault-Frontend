@@ -13,7 +13,13 @@ const ICONS = {
   error: '⛔',
 };
 
-export default function Alert({ variant = 'info', title, children }) {
+interface AlertProps {
+  variant?: 'info' | 'success' | 'warning' | 'error';
+  title?: string;
+  children?: React.ReactNode;
+}
+
+export default function Alert({ variant = 'info', title, children }: AlertProps) {
   return (
     <div className={`alert alert-${variant}`} role="status" aria-live="polite">
       <span className="alert-icon" aria-hidden="true">

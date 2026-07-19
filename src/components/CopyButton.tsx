@@ -3,16 +3,22 @@ import { useClipboard } from '../hooks/useClipboard.js';
 /**
  * Button that copies the given text to the clipboard and shows transient
  * confirmation. Builds on the shared useClipboard hook.
- * @param {object} props
- * @param {string} props.text - value to copy
- * @param {string} [props.label] - idle label
- * @param {string} [props.copiedLabel] - label shown after a successful copy
  */
+
+interface CopyButtonProps {
+  /** Value to copy */
+  text: string;
+  /** Idle label */
+  label?: string;
+  /** Label shown after a successful copy */
+  copiedLabel?: string;
+}
+
 export default function CopyButton({
   text,
   label = 'Copy',
   copiedLabel = 'Copied!',
-}) {
+}: CopyButtonProps) {
   const { copied, copy } = useClipboard();
 
   return (

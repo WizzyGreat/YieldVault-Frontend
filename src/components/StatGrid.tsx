@@ -1,12 +1,22 @@
-import StatCard from './StatCard.jsx';
+import StatCard from './StatCard';
 
 /**
  * Responsive grid of StatCards built from a list of stat descriptors. Keeps
  * pages tidy by centralising the repeated `.stat-grid` + mapping markup.
- * @param {object} props
- * @param {Array<{ label: string, value: string|number, hint?: string, icon?: string }>} props.stats
  */
-export default function StatGrid({ stats = [] }) {
+
+interface StatDescriptor {
+  label: string;
+  value: string | number;
+  hint?: string;
+  icon?: string;
+}
+
+interface StatGridProps {
+  stats?: StatDescriptor[];
+}
+
+export default function StatGrid({ stats = [] }: StatGridProps) {
   return (
     <div className="stat-grid">
       {stats.map((stat) => (

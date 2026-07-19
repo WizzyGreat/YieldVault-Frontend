@@ -8,6 +8,11 @@
  * @param {() => void} [props.onClick]
  * @param {'button'|'submit'} [props.type]
  */
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  loading?: boolean;
+}
+
 export default function Button({
   children,
   variant = 'primary',
@@ -15,7 +20,7 @@ export default function Button({
   loading = false,
   onClick,
   type = 'button',
-}) {
+}: ButtonProps) {
   return (
     <button
       type={type}

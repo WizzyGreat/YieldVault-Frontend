@@ -2,10 +2,10 @@ import { useVaults } from '../hooks/useVaults.js';
 import { usePositions } from '../hooks/usePositions.js';
 import { useWallet } from '../hooks/useWallet.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
-import StatCard from '../components/StatCard.jsx';
-import VaultCard from '../components/VaultCard.jsx';
-import Loader from '../components/Loader.jsx';
-import ErrorMessage from '../components/ErrorMessage.jsx';
+import StatCard from '../components/StatCard';
+import VaultCard from '../components/VaultCard';
+import Loader from '../components/Loader';
+import ErrorMessage from '../components/ErrorMessage';
 import { formatUsd, formatPercent, formatAmount } from '../utils/format.js';
 import { summarizePositions } from '../utils/positions.js';
 

@@ -1,9 +1,12 @@
 /**
  * Simple spinner with an optional label, used for async loading states.
- * @param {object} props
- * @param {string} [props.label]
  */
-export default function Loader({ label = 'Loading…' }) {
+
+interface LoaderProps {
+  label?: string;
+}
+
+export default function Loader({ label = 'Loading…' }: LoaderProps) {
   return (
     <div className="loader" role="status" aria-live="polite">
       <span className="loader-spinner" />

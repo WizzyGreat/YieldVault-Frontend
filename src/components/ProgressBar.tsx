@@ -3,12 +3,18 @@ import { clamp } from '../utils/format.js';
 /**
  * Horizontal progress bar. Useful for vault capacity, allocation or any
  * 0–100% measure. The fill width is clamped to a safe range.
- * @param {object} props
- * @param {number} props.value - current value
- * @param {number} [props.max=100] - value that represents a full bar
- * @param {string} [props.label] - optional caption shown above the bar
  */
-export default function ProgressBar({ value, max = 100, label }) {
+
+interface ProgressBarProps {
+  /** Current value */
+  value: number;
+  /** Value that represents a full bar */
+  max?: number;
+  /** Optional caption shown above the bar */
+  label?: string;
+}
+
+export default function ProgressBar({ value, max = 100, label }: ProgressBarProps) {
   const ratio = max > 0 ? value / max : 0;
   const percent = clamp(Math.round(ratio * 100), 0, 100);
 

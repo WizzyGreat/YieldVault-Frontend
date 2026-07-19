@@ -1,16 +1,26 @@
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 
 /**
  * Catches render errors in the subtree and shows a fallback instead of a
  * blank screen. Class component because hooks cannot catch render errors.
  */
-export default class ErrorBoundary extends Component {
-  constructor(props) {
+
+interface ErrorBoundaryProps {
+  children: ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+  message: string;
+}
+
+export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, message: '' };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return { hasError: true, message: error.message };
   }
 

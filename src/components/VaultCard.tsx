@@ -4,10 +4,22 @@ import { getAssetByCode } from '../constants/assets.js';
 
 /**
  * Card summarising a vault: asset, APY, TVL and a link to its detail page.
- * @param {object} props
- * @param {object} props.vault
  */
-export default function VaultCard({ vault }) {
+
+interface Vault {
+  id: string;
+  name: string;
+  asset: string;
+  risk: string;
+  apy: number;
+  tvl: number;
+}
+
+interface VaultCardProps {
+  vault: Vault;
+}
+
+export default function VaultCard({ vault }: VaultCardProps) {
   const asset = getAssetByCode(vault.asset);
 
   return (

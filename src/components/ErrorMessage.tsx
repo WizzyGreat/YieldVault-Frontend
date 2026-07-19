@@ -1,10 +1,13 @@
 /**
  * Inline error banner with an optional retry action.
- * @param {object} props
- * @param {string} props.message
- * @param {() => void} [props.onRetry]
  */
-export default function ErrorMessage({ message, onRetry }) {
+
+interface ErrorMessageProps {
+  message: string;
+  onRetry?: () => void;
+}
+
+export default function ErrorMessage({ message, onRetry }: ErrorMessageProps) {
   return (
     <div className="error-message" role="alert">
       <span className="error-icon">⚠️</span>

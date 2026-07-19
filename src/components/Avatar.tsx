@@ -1,12 +1,17 @@
 /**
  * Circular identity badge. Renders a provided emoji/icon or falls back to the
  * first initials derived from a name. Useful for assets and wallet accounts.
- * @param {object} props
- * @param {string} [props.name] - source for initials when no icon is given
- * @param {string} [props.icon] - emoji or single character to display
- * @param {'sm'|'md'|'lg'} [props.size]
  */
-function initials(name) {
+
+interface AvatarProps {
+  /** Source for initials when no icon is given */
+  name?: string;
+  /** Emoji or single character to display */
+  icon?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+function initials(name?: string): string {
   if (!name || typeof name !== 'string') return '?';
   return name
     .trim()
@@ -17,7 +22,7 @@ function initials(name) {
     .toUpperCase();
 }
 
-export default function Avatar({ name, icon, size = 'md' }) {
+export default function Avatar({ name, icon, size = 'md' }: AvatarProps) {
   return (
     <span className={`avatar avatar-${size}`} aria-hidden="true">
       {icon || initials(name)}

@@ -1,18 +1,22 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useKeyPress } from '../hooks/useKeyPress.js';
 import { useOnClickOutside } from '../hooks/useOnClickOutside.js';
 
 /**
  * Accessible dialog. Closes on Escape and on an outside click. Renders
  * nothing while `open` is false so it can stay mounted in the tree.
- * @param {object} props
- * @param {boolean} props.open
- * @param {() => void} props.onClose
- * @param {string} [props.title]
- * @param {React.ReactNode} props.children
  */
-export default function Modal({ open, onClose, title, children }) {
-  const panelRef = useRef(null);
+
+interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+}
+
+export default function Modal({ open, onClose, title, children }: ModalProps) {
+  const panelRef = useRef<HTMLDivElement>(null!);
+
 
   useKeyPress('Escape', () => {
     if (open) onClose();

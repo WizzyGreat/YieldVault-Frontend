@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Button from './Button.jsx';
+import React, { useState } from 'react';
+import Button from './Button';
 import { useWallet } from '../hooks/useWallet.js';
 import { validateDeposit } from '../utils/validate.js';
 import { previewDeposit } from '../utils/shares.js';
@@ -10,24 +10,34 @@ import * as walletService from '../services/wallet.js';
 /**
  * Deposit form for a vault. Validates against wallet balance, previews the
  * shares to be minted, and submits a mock transaction.
- * @param {object} props
- * @param {object} props.vault
- * @param {() => void} [props.onSuccess]
  */
-export default function DepositForm({ vault, onSuccess }) {
+
+interface DepositFormVault {
+  id: string;
+  asset: string;
+  totalAssets: number;
+  totalShares: number;
+}
+
+interface DepositFormProps {
+  vault: DepositFormVault;
+  onSuccess?: () => void;
+}
+
+export default function DepositForm({ vault, onSuccess }: DepositFormProps) {
   const { isConnected, balanceOf } = useWallet();
   const [amount, setAmount] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState<string | null>(null);
 
   const balance = balanceOf(vault.asset);
   const { valid, error } = validateDeposit(amount, balance);
-  const sharesOut = previewDeposit(amount, vault.totalAssets, vault.totalShares);
+  const sharesOut = previewDeposit(amount as unknown as number, vault.totalAssets, vault.totalShares);
   const touched = amount !== '';
 
   const handleMax = () => setAmount(String(balance));
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!valid) return;
     setSubmitting(true);
@@ -38,8 +48,8 @@ export default function DepositForm({ vault, onSuccess }) {
       setMessage(`Deposited ${amount} ${vault.asset}`);
       setAmount('');
       onSuccess?.();
-    } catch (err) {
-      setMessage(err.message || 'Deposit failed');
+    } catch (err: unknown) {
+      setMessage(err instanceof Error ? err.message : 'Deposit failed');
     } finally {
       setSubmitting(false);
     }

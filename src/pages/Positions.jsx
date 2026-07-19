@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import { usePositions } from '../hooks/usePositions.js';
 import { useWallet } from '../hooks/useWallet.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
-import PositionRow from '../components/PositionRow.jsx';
-import StatCard from '../components/StatCard.jsx';
-import Loader from '../components/Loader.jsx';
-import ErrorMessage from '../components/ErrorMessage.jsx';
-import EmptyState from '../components/EmptyState.jsx';
-import WalletButton from '../components/WalletButton.jsx';
+import PositionRow from '../components/PositionRow';
+import StatCard from '../components/StatCard';
+import Loader from '../components/Loader';
+import ErrorMessage from '../components/ErrorMessage';
+import EmptyState from '../components/EmptyState';
+import WalletButton from '../components/WalletButton';
 import { formatUsd, formatAmount } from '../utils/format.js';
 import { summarizePositions } from '../utils/positions.js';
 

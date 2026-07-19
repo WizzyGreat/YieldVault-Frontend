@@ -1,11 +1,19 @@
 /**
  * Minimal controlled tab switcher.
- * @param {object} props
- * @param {Array<{ id: string, label: string }>} props.tabs
- * @param {string} props.active
- * @param {(id: string) => void} props.onChange
  */
-export default function Tabs({ tabs, active, onChange }) {
+
+interface Tab {
+  id: string;
+  label: string;
+}
+
+interface TabsProps {
+  tabs: Tab[];
+  active: string;
+  onChange: (id: string) => void;
+}
+
+export default function Tabs({ tabs, active, onChange }: TabsProps) {
   return (
     <div className="tabs" role="tablist">
       {tabs.map((tab) => (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import EmptyState from '../components/EmptyState.jsx';
+import EmptyState from '../components/EmptyState';
 
 /**
  * Catch-all 404 page for unknown routes.

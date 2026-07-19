@@ -4,10 +4,21 @@ import { getAssetByCode } from '../constants/assets.js';
 
 /**
  * One row in the positions list, showing shares, value and earned yield.
- * @param {object} props
- * @param {object} props.position
  */
-export default function PositionRow({ position }) {
+
+interface Position {
+  vaultId: string;
+  asset: string;
+  shares: number;
+  value: number;
+  earned: number;
+}
+
+interface PositionRowProps {
+  position: Position;
+}
+
+export default function PositionRow({ position }: PositionRowProps) {
   const asset = getAssetByCode(position.asset);
   const positive = position.earned >= 0;
 

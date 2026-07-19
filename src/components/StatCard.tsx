@@ -1,12 +1,16 @@
 /**
  * Displays a single labelled statistic (e.g. TVL, APY, total shares).
- * @param {object} props
- * @param {string} props.label
- * @param {string|number} props.value
- * @param {string} [props.hint] - small caption shown under the value
- * @param {string} [props.icon]
  */
-export default function StatCard({ label, value, hint, icon }) {
+
+interface StatCardProps {
+  label: string;
+  value: string | number;
+  /** Small caption shown under the value */
+  hint?: string;
+  icon?: string;
+}
+
+export default function StatCard({ label, value, hint, icon }: StatCardProps) {
   return (
     <div className="stat-card">
       <div className="stat-card-head">

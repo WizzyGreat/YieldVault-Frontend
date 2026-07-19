@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import WalletButton from './WalletButton.jsx';
+import WalletButton from './WalletButton';
 
 /**
  * Top navigation bar with brand, primary links and the wallet control.
  */
 export default function Navbar() {
-  const linkClass = ({ isActive }) =>
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? 'nav-link nav-link-active' : 'nav-link';
 
   return (
