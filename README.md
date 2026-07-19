@@ -42,6 +42,30 @@ src/
 - Mock Stellar wallet (connect/disconnect, balances, signing)
 - Loading, error and empty states throughout
 
+## Design & Typography System
+
+YieldVault uses a structured, standardized design system powered by CSS variables under `:root` in `src/styles/index.css`.
+
+### Typography Scale
+- **Font Sizes**:
+  - Extra Small (`--fs-xs`): `0.75rem` (12px)
+  - Small (`--fs-sm`): `0.875rem` (14px)
+  - Base (`--fs-base`): `1rem` (16px)
+  - Medium (`--fs-md`): `1.125rem` (18px)
+  - Large (`--fs-lg`): `1.25rem` (20px)
+  - Extra Large (`--fs-xl`): `1.5rem` (24px)
+  - 2X Large (`--fs-2xl`): `1.875rem` (30px)
+  - 3X Large (`--fs-3xl`): `2.25rem` (36px)
+  - 4X Large (`--fs-4xl`): `2.625rem` (42px)
+  - 5X Large (`--fs-5xl`): `3.25rem` (52px)
+- **Line Heights**: `--lh-tight` (1.2), `--lh-snug` (1.35), `--lh-normal` (1.5), `--lh-relaxed` (1.625)
+- **Font Weights**: `--fw-normal` (400), `--fw-medium` (500), `--fw-semibold` (600), `--fw-bold` (700)
+
+### Utility Classes
+To quickly apply standardized font properties, the design system exposes utility classes:
+- Sizes: `.text-xs`, `.text-sm`, `.text-base`, `.text-md`, `.text-lg`, `.text-xl`, `.text-2xl`, `.text-3xl`, `.text-4xl`, `.text-5xl`
+- Weights: `.fw-normal`, `.fw-medium`, `.fw-semibold`, `.fw-bold`
+
 ## Utilities & hooks
 
 Reusable building blocks live under `src/utils` and `src/hooks`:

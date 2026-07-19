@@ -18,11 +18,11 @@
   }
 
   .hero-title {
-    font-size: 2rem;
+    font-size: var(--fs-3xl);
   }
 
   .stat-card-value {
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
   }
 
   .position-row {
